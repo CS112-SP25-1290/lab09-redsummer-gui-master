@@ -1,7 +1,9 @@
 module cs112.lab09 {
     requires javafx.controls;
     requires javafx.fxml;
+    requires javafx.web;
     requires jdk.compiler;
+    
 
 
     opens cs112.lab09 to javafx.fxml;
