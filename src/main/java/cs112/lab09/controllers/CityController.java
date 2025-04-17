@@ -1,6 +1,4 @@
 package cs112.lab09.controllers;
-import cs112.lab09.Constants;
-import cs112.lab09.RedSummer;
 import cs112.lab09.models.RevisedHistoricalEvent;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,6 +12,7 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 
 public class CityController {
+   //Inject GUI components from FXML file
     @FXML
     private Label locationLabel = new Label();
     @FXML
@@ -35,6 +34,7 @@ public class CityController {
     // Initialize the data for the city view
     public void initData(String location, RevisedHistoricalEvent event) {
 
+        // Sets the correct data for the view based on the button clicked
         locationLabel.setText(location);  
         dateLabel.setText(event.getEventDay().toString());
         descriptionLabel.setText(event.getDescription());
@@ -43,17 +43,21 @@ public class CityController {
 
         //open the source material
         hyperlink.setOnAction(e ->{
+            
+            //Create components for the source view window.
             WebView webView = new WebView();
             WebEngine webEngine = webView.getEngine();
-
-            webEngine.load(Constants.HISTORICAL_DATA[1][5]);
-
-            // Create a new stage for the WebView
             Stage stage = new Stage();
             Scene scene = new Scene(webView, 800, 600);
-            stage.setTitle("San Francisco Riot Citation");
+
+            //load webpage and set stage title
+            webEngine.load(event.getCitation());
+            stage.setTitle(event.getLocation() + " Riot Citation");
+        
+            // Set the scene and show the stage
             stage.setScene(scene);
-            stage.show();  
+            stage.show();
+              
         });
     }
     //close popup window

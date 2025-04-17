@@ -1,5 +1,5 @@
 package cs112.lab09.controllers;
-
+import cs112.lab09.Constants;
 import cs112.lab09.RedSummer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -35,11 +35,16 @@ public class MainController {
     }
     public void handleStartButton(ActionEvent e){
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(RedSummer.class.getResource("map-view.fxml"));
+
+            //Load the FXML file for the map view
+            //Uses current stage to set the scene
+            FXMLLoader fxmlLoader = new FXMLLoader(RedSummer.class.getResource(MAP_VIEW_RESOURCE));
             Scene scene = new Scene(fxmlLoader.load());
             Stage stage = (Stage) startButton.getScene().getWindow();
+            // Set the scene and title for the stage
             stage.setScene(scene);
             stage.setTitle(MAP_VIEW_TITLE);
+            // Close Main View and open Map View
             stage.show();
 
         } catch (IOException ex) {
@@ -47,6 +52,7 @@ public class MainController {
         }
     }
     public void handleExitButton(ActionEvent e){
+        //Closes the stage
         Stage stage = (Stage) exitButton.getScene().getWindow();
         stage.close();
     }
